@@ -1,5 +1,4 @@
-FROM python:3.12-slim
-RUN pip3 install flask
+FROM vulhub/flask:1.1.1
 COPY app_flask.py /opt
 WORKDIR /opt
 EXPOSE 8080
