@@ -26,3 +26,13 @@ jobs:
         with:
           push: true
           tags: digo66/app_flask:latest
+
+      - name: Trigger squonk
+        uses: informaticsmatters/trigger-ci-action@v1
+        with:
+          ci-owner: pes-lab
+          ci-repository: flask-kustomize
+          # ci-ref: refs/heads/dev-branch
+          ci-name: argo deploy
+          ci-user: ${{ vars.DOCKERHUB_USERNAME }}
+          ci-user-token: ${{ secrets.WORKFLOW_TOKEN }}  
