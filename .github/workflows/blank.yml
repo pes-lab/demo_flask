@@ -35,4 +35,6 @@ jobs:
           # ci-ref: refs/heads/dev-branch
           ci-name: argo deploy
           ci-user: ${{ vars.DOCKERHUB_USERNAME }}
-          ci-user-token: ${{ secrets.WORKFLOW_TOKEN }}  
+          ci-user-token: ${{ secrets.WORKFLOW_TOKEN }}
+          ci-inputs: >-
+            sha-tag=${{ github.sha }}
