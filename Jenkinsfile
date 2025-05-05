@@ -4,17 +4,19 @@ pipeline {
     }
 
     stages {
-        // stage('Hello') {
-        //     steps {
-        //         echo 'Hello World'
-        //     }
-        // }
         stage('check') {
             steps {
                 sh """
                   whoami
                   pwd
                   ls
+                """
+            }
+        }
+        stage('build') {
+            steps {
+                sh """
+                  docker build
                 """
             }
         }
