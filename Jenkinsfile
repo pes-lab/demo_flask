@@ -13,6 +13,13 @@ pipeline {
                 """
             }
         }
+        stage('docker hub login'){
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker_hub_key', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                    sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+                }
+            }
+        }
         stage('build') {
             steps {
                 sh """
