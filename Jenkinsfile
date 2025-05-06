@@ -16,7 +16,14 @@ pipeline {
         stage('build') {
             steps {
                 sh """
-                  docker build .
+                  docker build -t digo66/app_flask .
+                """
+            }
+        }
+        stage('push') {
+            steps {
+                sh """
+                  docker push digo66/app_flask
                 """
             }
         }
