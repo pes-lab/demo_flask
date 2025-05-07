@@ -14,6 +14,7 @@ pipeline {
             }
         }
         stage('SonarQube analysis') {
+            steps {
             // def scannerHome = tool 'sonarCloud';
             try {
                 withSonarQubeEnv() { 
@@ -22,6 +23,7 @@ pipeline {
             } catch (Exception e) {
                 echo "SonarQube analysis failed: ${e.message}"
                 currentBuild.result = 'FAILURE'
+            }
             }
         }
         stage('docker hub login'){
