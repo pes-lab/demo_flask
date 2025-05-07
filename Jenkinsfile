@@ -2,7 +2,10 @@ pipeline {
     agent {
         node { label 'slave_node'}
     }
-
+    environment {
+        // 通过 withSonarQubeEnv 注入 SonarQube 环境变量
+        def scannerHome = tool 'sonarScanner' // 替换为你在 Jenkins 中配置的 SonarQube 扫描器名称
+    }
     stages {
         stage('check') {
             steps {
@@ -17,7 +20,7 @@ pipeline {
             steps {
             // def scannerHome = tool 'sonarCloud';
                 withSonarQubeEnv('sonarCloud') { 
-                    sh "./sonar-scanner"
+                    sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
         }
