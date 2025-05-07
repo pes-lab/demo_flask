@@ -16,14 +16,9 @@ pipeline {
         stage('SonarQube analysis') {
             steps {
             // def scannerHome = tool 'sonarCloud';
-            try {
                 withSonarQubeEnv() { 
                     sh "./sonar-scanner"
                 }
-            } catch (Exception e) {
-                echo "SonarQube analysis failed: ${e.message}"
-                currentBuild.result = 'FAILURE'
-            }
             }
         }
         stage('docker hub login'){
