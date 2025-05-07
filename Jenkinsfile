@@ -14,10 +14,10 @@ pipeline {
             }
         }
         stage('SonarQube analysis') {
-            def scannerHome = tool 'sonarCloud';
+            // def scannerHome = tool 'sonarCloud';
             try {
-                withSonarQubeEnv('sonarScanner') { 
-                    sh "${scannerHome}/bin/sonar-scanner"
+                withSonarQubeEnv() { 
+                    sh "./sonar-scanner"
                 }
             } catch (Exception e) {
                 echo "SonarQube analysis failed: ${e.message}"
