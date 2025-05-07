@@ -13,6 +13,17 @@ pipeline {
                 """
             }
         }
+        stage('SonarQube analysis') {
+        def scannerHome = tool 'sonarCloud';
+            try {
+                withSonarQubeEnv('sonarScanner') { 
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            } catch (Exception e) {
+                echo "SonarQube analysis failed: ${e.message}"
+                currentBuild.result = 'FAILURE'
+            }
+        }
         stage('docker hub login'){
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker_hub_key', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
