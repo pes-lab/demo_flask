@@ -20,7 +20,11 @@ pipeline {
             steps {
             // def scannerHome = tool 'sonarCloud';
                 withSonarQubeEnv('sonarCloud') { 
-                    sh "${scannerHome}/bin/sonar-scanner"
+                    sh """
+                        ${scannerHome}/bin/sonar-scanner \
+                        -Dsonar.organization=myonar-digo66 \
+                        -Dsonar.projectKey=myKey
+                    """
                 }
             }
         }
