@@ -23,7 +23,8 @@ pipeline {
                     sh """
                         ${scannerHome}/bin/sonar-scanner \
                         -Dsonar.organization=myonar-digo66 \
-                        -Dsonar.projectKey=myKey
+                        -Dsonar.projectKey=myKey \
+                        -Dsonar.exclusions=**/*.html
                     """
                 }
             }
