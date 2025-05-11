@@ -3,5 +3,5 @@ RUN mkdir /app/templates
 COPY app_flask.py /app
 COPY templates /app/templates
 WORKDIR /app
-EXPOSE 8080
+EXPOSE 8081
 CMD ["python","app_flask.py"]
